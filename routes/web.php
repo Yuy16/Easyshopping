@@ -1,19 +1,9 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\Controller;
-=======
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ShoppingManagementController;
-use App\Http\Controllers\OrderManagementController;
->>>>>>> 47656c3f109a72f80db30ffb638fa10500b0f38e
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\welcomeController; // Import the WelcomeController
 
-<<<<<<< HEAD
-// Define the route for the root URL using the WelcomeController
-Route::resource('shopper',welcomeController::class);
-=======
 Route::get('/', function () {
     return view('welcome');
 });
@@ -47,11 +37,10 @@ Route::get('/admin/delete/{id}', [ShoppingManagementController::class, 'destroy'
 
 });
 
-// Public Route
+// Public Routesss
 // Define a public route named 'home' that points to the shoppers home or landing page
 require __DIR__.'/auth.php';
 
 Route::get('/home', function () {
     return view('shoppers.home');  // Ensure that you have a 'shop.home' view created
 })->name('home');
->>>>>>> 47656c3f109a72f80db30ffb638fa10500b0f38e
