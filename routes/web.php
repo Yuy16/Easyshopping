@@ -47,5 +47,17 @@ Route::get('/home', function () {
     return view('shoppers.home');  // Ensure that you have a 'shoppers.home' view created
 })->name('home');
 
+
+    // Order routes
+    Route::resource('orders', OrderController::class);
+    
+    // Payment routes
+    Route::post('payments/{order}', [PaymentController::class, 'process'])->name('payments.process');
+    
+    // Account routes
+    Route::get('account/settings', [AccountController::class, 'settings'])->name('account.settings');
+    Route::put('account/settings', [AccountController::class, 'update'])->name('account.update');
+});
+
 // Auth Routes (Login, Registration)
 require __DIR__.'/auth.php';
