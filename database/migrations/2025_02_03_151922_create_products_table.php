@@ -1,4 +1,5 @@
-<?php 
+<?php
+// database/migrations/xxxx_xx_xx_xxxxxx_create_products_table.php
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,14 +13,14 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable(); // Product description
             $table->decimal('price', 8, 2); // Price of the product
-            $table->unsignedBigInteger('category_id')->nullable(); // Foreign key for category
+            $table->unsignedBigInteger('category_id'); // Foreign key for category
 
             $table->string('image_path'); // Image path
             $table->boolean('is_active')->default(true); // Active status
             $table->timestamps();
 
-            // Foreign key constraint (assuming you have a categories table)
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            // Foreign key constraint
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
