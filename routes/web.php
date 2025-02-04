@@ -1,10 +1,15 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShoppingManagementController;
 use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\ProductController;
+=======
+use App\Http\Controllers\Controller;
+>>>>>>> d25422bb105593cf395b9651224e553c9d291c1c
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\welcomeController; // Import the WelcomeController
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,8 +44,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/delete/{id}', [ShoppingManagementController::class, 'destroy'])->name('admin.delete');
 });
 
+<<<<<<< HEAD
 
 // Public Route
+=======
+// Public Routesss
+>>>>>>> d25422bb105593cf395b9651224e553c9d291c1c
 // Define a public route named 'home' that points to the shoppers home or landing page
 require __DIR__.'/auth.php';
 Route::get('/', function () {
