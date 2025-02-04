@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShoppingManagementController;
 use App\Http\Controllers\OrderManagementController;
+use App\Http\Controllers\WelcomeController;  // Make sure this is included
 
 // Define the route for the root URL using the WelcomeController
 Route::resource('shopper', WelcomeController::class);
@@ -47,4 +48,3 @@ Route::get('/home', function () {
 
 // Auth Routes (Login, Registration)
 require __DIR__.'/auth.php';
-
