@@ -8,7 +8,7 @@ use App\Http\Controllers\OrderManagementController;
 use App\Http\Controllers\WelcomeController;  // Make sure this is included
 
 // Define the route for the root URL using the WelcomeController
-Route::resource('shopper', WelcomeController::class);
+//Route::resource('shopper', WelcomeController::class);
 
 Route::get('/', function () {
     return view('welcome');
