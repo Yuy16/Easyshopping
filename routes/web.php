@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShoppingManagementController;
 use App\Http\Controllers\OrderManagementController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,17 +32,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/create', [ShoppingManagementController::class, 'create'])->name('admin.create');
     Route::post('/admin/store', [ShoppingManagementController::class, 'store'])->name('admin.store');
     Route::get('/admin/catalog',[ShoppingManagementController::class,'catalog'])->name('admin.catalog');
-    // routes/web.php
-Route::get('/admin/edit/{id}', [ShoppingManagementController::class, 'edit'])->name('admin.edit');
-Route::put('/admin/update/{id}', [ShoppingManagementController::class, 'update'])->name('admin.update');
-Route::get('/admin/delete/{id}', [ShoppingManagementController::class, 'destroy'])->name('admin.delete');
-
+    
+    // Corrected routes for editing and deleting products
+    Route::get('/admin/edit/{id}', [ShoppingManagementController::class, 'edit'])->name('admin.edit');
+    Route::put('/admin/update/{id}', [ShoppingManagementController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/delete/{id}', [ShoppingManagementController::class, 'destroy'])->name('admin.delete');
 });
+
 
 // Public Route
 // Define a public route named 'home' that points to the shoppers home or landing page
 require __DIR__.'/auth.php';
-
-Route::get('/home', function () {
-    return view('shoppers.home');  // Ensure that you have a 'shop.home' view created
+Route::get('/', function () {
+    return view('welcome');
 })->name('home');
+
+
+Route::get('/home', [ProductController::class, 'index'])->name('home');  // Pass products from controller to view
+
+Route::get('/shoppers/products', [ProductController::class, 'product'])->name('shoppers.products');
+// Correct the route to use the 'index' method
+Route::get('/shoppers/products', [ProductController::class, 'index'])->name('shoppers.products');
+
+Route::post('/product/select', [ProductController::class, 'selectProduct'])->name('product.select');
+Route::get('/product/selected', [ProductController::class, 'showSelectedProduct'])->name('product.selected');
+
+
