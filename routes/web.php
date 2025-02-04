@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/delete/{id}', [ShoppingManagementController::class, 'destroy'])->name('admin.delete');
 });
 
+
 // Public Route
 Route::get('/home', function () {
     return view('shoppers.home');  // Ensure that you have a 'shoppers.home' view created
