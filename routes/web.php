@@ -1,14 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShoppingManagementController;
 use App\Http\Controllers\OrderManagementController;
-use App\Http\Controllers\WelcomeController;  // Make sure this is included
-
-// Define the route for the root URL using the WelcomeController
-//Route::resource('shopper', WelcomeController::class);
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\welcomeController; // Import the WelcomeController
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,19 +29,23 @@ Route::middleware('auth')->group(function () {
     // Order Management Route
     Route::get('/order-management', [OrderManagementController::class, 'index'])->name('order-management');
 
-    // Shopping Management Routes
+    // Shopping Management Route (Corrected)
     Route::get('/admin/create', [ShoppingManagementController::class, 'create'])->name('admin.create');
     Route::post('/admin/store', [ShoppingManagementController::class, 'store'])->name('admin.store');
-    Route::get('/admin/catalog', [ShoppingManagementController::class, 'catalog'])->name('admin.catalog');
+    Route::get('/admin/catalog',[ShoppingManagementController::class,'catalog'])->name('admin.catalog');
+    
+    // Corrected routes for editing and deleting products
     Route::get('/admin/edit/{id}', [ShoppingManagementController::class, 'edit'])->name('admin.edit');
     Route::put('/admin/update/{id}', [ShoppingManagementController::class, 'update'])->name('admin.update');
-    Route::get('/admin/delete/{id}', [ShoppingManagementController::class, 'destroy'])->name('admin.delete');
+    Route::delete('/admin/delete/{id}', [ShoppingManagementController::class, 'destroy'])->name('admin.delete');
 });
 
 
 // Public Route
-Route::get('/home', function () {
-    return view('shoppers.home');  // Ensure that you have a 'shoppers.home' view created
+// Define a public route named 'home' that points to the shoppers home or landing page
+require __DIR__.'/auth.php';
+Route::get('/', function () {
+    return view('welcome');
 })->name('home');
 
 
