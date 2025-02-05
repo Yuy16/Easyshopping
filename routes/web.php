@@ -49,16 +49,13 @@ Route::get('/', function () {
 })->name('home');
 
 
-    // Order routes
-    Route::resource('orders', OrderController::class);
-    
-    // Payment routes
-    Route::post('payments/{order}', [PaymentController::class, 'process'])->name('payments.process');
-    
-    // Account routes
-    Route::get('account/settings', [AccountController::class, 'settings'])->name('account.settings');
-    Route::put('account/settings', [AccountController::class, 'update'])->name('account.update');
-});
+Route::get('/home', [ProductController::class, 'index'])->name('home');  // Pass products from controller to view
 
-// Auth Routes (Login, Registration)
-require __DIR__.'/auth.php';
+Route::get('/shoppers/products', [ProductController::class, 'product'])->name('shoppers.products');
+// Correct the route to use the 'index' method
+Route::get('/shoppers/products', [ProductController::class, 'index'])->name('shoppers.products');
+
+Route::post('/product/select', [ProductController::class, 'selectProduct'])->name('product.select');
+Route::get('/product/selected', [ProductController::class, 'showSelectedProduct'])->name('product.selected');
+
+
